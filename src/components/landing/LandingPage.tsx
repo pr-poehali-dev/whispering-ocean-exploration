@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { motion, useScroll, useSpring } from 'framer-motion'
 import Section from './Section'
 import MapSection from './MapSection'
+import ReviewsSection from './ReviewsSection'
 import Layout from './Layout'
 import { sections } from './sections'
 import type { Section as SectionType } from '@/types'
@@ -16,6 +17,7 @@ export default function LandingPage() {
 
   const allSections = [
     ...sections.slice(0, MAP_SECTION_INDEX),
+    { id: 'reviews' },
     { id: 'map' },
     ...sections.slice(MAP_SECTION_INDEX),
   ]
@@ -75,6 +77,8 @@ export default function LandingPage() {
         {allSections.map((section, index) =>
           section.id === 'map' ? (
             <MapSection key="map" isActive={index === activeSection} />
+          ) : section.id === 'reviews' ? (
+            <ReviewsSection key="reviews" isActive={index === activeSection} />
           ) : (
             <Section
               key={section.id}
