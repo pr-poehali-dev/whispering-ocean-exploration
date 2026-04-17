@@ -45,15 +45,21 @@ export default function MapSection({ isActive }: MapSectionProps) {
       </motion.div>
 
       <motion.div
-        className="flex items-center gap-3 mt-6"
+        className="flex flex-wrap gap-6 mt-6"
         initial={{ opacity: 0 }}
         animate={isActive ? { opacity: 1 } : {}}
         transition={{ duration: 0.5, delay: 0.4 }}
       >
-        <Icon name="Phone" size={18} className="text-red-500 shrink-0" />
-        <a href="tel:+79805279797" className="text-neutral-300 text-lg hover:text-white transition-colors">
-          +7 980 527-97-97
-        </a>
+        <div className="flex items-center gap-3">
+          <Icon name="Phone" size={18} className="text-red-500 shrink-0" />
+          <a href="tel:+79805279797" className="text-neutral-300 text-lg hover:text-white transition-colors">
+            +7 980 527-97-97
+          </a>
+        </div>
+        <div className="flex items-center gap-3">
+          <Icon name="Clock" size={18} className="text-red-500 shrink-0" />
+          <span className="text-neutral-300 text-lg">Ежедневно с 9:00 до 18:00</span>
+        </div>
       </motion.div>
     </section>
   )
