@@ -3,9 +3,27 @@ import { Button } from "@/components/ui/button"
 import Icon from "@/components/ui/icon"
 import type { SectionProps } from "@/types"
 
+const LOGO_URL = 'https://cdn.poehali.dev/projects/28778356-6d9e-479c-a3be-8d58b9202770/bucket/d4854151-62c0-4f84-b041-354d2df42705.jpg'
+
 export default function Section({ id, title, subtitle, content, isActive, showButton, buttonText, carImage, carName, carPrice, features }: SectionProps) {
+  const showLogo = id === 'hero' || id === 'cta'
   return (
     <section id={id} className="relative h-screen w-full snap-start flex flex-col justify-center p-8 md:p-16 lg:p-24">
+      {showLogo && (
+        <motion.div
+          className="absolute top-6 right-16 md:right-20"
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={isActive ? { opacity: 1, scale: 1 } : {}}
+          transition={{ duration: 0.6, delay: 0.3 }}
+        >
+          <img
+            src={LOGO_URL}
+            alt="Арва Моторс"
+            className="w-24 h-24 md:w-32 md:h-32 object-contain"
+            style={{ mixBlendMode: 'screen' }}
+          />
+        </motion.div>
+      )}
       {subtitle && (
         <motion.div
           className="mb-12"
