@@ -66,6 +66,7 @@ export default function Section({ id, title, subtitle, content, isActive, showBu
                 variant="outline"
                 size="lg"
                 className="text-white bg-red-800 border-red-700 hover:bg-red-700 hover:border-red-500 transition-colors font-semibold text-lg px-8 py-6"
+                onClick={() => window.location.href = 'tel:+79805279797'}
               >
                 {buttonText}
               </Button>
