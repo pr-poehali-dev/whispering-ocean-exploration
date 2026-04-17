@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button"
 import Icon from "@/components/ui/icon"
 import type { SectionProps } from "@/types"
 
-const LOGO_URL = 'https://cdn.poehali.dev/projects/28778356-6d9e-479c-a3be-8d58b9202770/bucket/d4854151-62c0-4f84-b041-354d2df42705.jpg'
+const LOGO_URL = 'https://cdn.poehali.dev/projects/28778356-6d9e-479c-a3be-8d58b9202770/bucket/f79e1709-6490-4cb0-8de0-054f9df039b5.jpg'
 
 export default function Section({ id, title, subtitle, content, isActive, showButton, buttonText, carImage, carName, carPrice, features }: SectionProps) {
   const showLogo = id === 'hero' || id === 'cta'
