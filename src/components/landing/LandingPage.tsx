@@ -1,14 +1,24 @@
 import { useEffect, useRef, useState } from 'react'
 import { motion, useScroll, useSpring } from 'framer-motion'
 import Section from './Section'
+import MapSection from './MapSection'
 import Layout from './Layout'
 import { sections } from './sections'
+import type { Section as SectionType } from '@/types'
+
+const MAP_SECTION_INDEX = sections.length - 1
 
 export default function LandingPage() {
   const [activeSection, setActiveSection] = useState(0)
   const containerRef = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({ container: containerRef })
   const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 })
+
+  const allSections = [
+    ...sections.slice(0, MAP_SECTION_INDEX),
+    { id: 'map' },
+    ...sections.slice(MAP_SECTION_INDEX),
+  ]
 
   useEffect(() => {
     const handleScroll = () => {
@@ -44,7 +54,7 @@ export default function LandingPage() {
   return (
     <Layout>
       <nav className="fixed top-0 right-0 h-screen flex flex-col justify-center z-30 p-4">
-        {sections.map((section, index) => (
+        {allSections.map((section, index) => (
           <button
             key={section.id}
             className={`w-3 h-3 rounded-full my-2 transition-all ${
@@ -62,13 +72,17 @@ export default function LandingPage() {
         ref={containerRef}
         className="h-full overflow-y-auto snap-y snap-mandatory"
       >
-        {sections.map((section, index) => (
-          <Section
-            key={section.id}
-            {...section}
-            isActive={index === activeSection}
-          />
-        ))}
+        {allSections.map((section, index) =>
+          section.id === 'map' ? (
+            <MapSection key="map" isActive={index === activeSection} />
+          ) : (
+            <Section
+              key={section.id}
+              {...(section as SectionType)}
+              isActive={index === activeSection}
+            />
+          )
+        )}
       </div>
     </Layout>
   )
