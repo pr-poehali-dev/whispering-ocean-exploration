@@ -11,6 +11,7 @@ export interface Section {
   carName?: string
   carPrice?: string
   features?: string[]
+  buttonUrl?: string
 }
 
 export interface SectionProps extends Section {

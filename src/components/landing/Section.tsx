@@ -5,7 +5,7 @@ import type { SectionProps } from "@/types"
 
 const LOGO_URL = 'https://cdn.poehali.dev/projects/28778356-6d9e-479c-a3be-8d58b9202770/bucket/f79e1709-6490-4cb0-8de0-054f9df039b5.jpg'
 
-export default function Section({ id, title, subtitle, content, isActive, showButton, buttonText, carImage, carName, carPrice, features }: SectionProps) {
+export default function Section({ id, title, subtitle, content, isActive, showButton, buttonText, buttonUrl, carImage, carName, carPrice, features }: SectionProps) {
   const showLogo = id === 'hero' || id === 'cta'
   return (
     <section id={id} className="relative h-screen w-full snap-start flex flex-col justify-center p-8 md:p-16 lg:p-24">
@@ -84,7 +84,7 @@ export default function Section({ id, title, subtitle, content, isActive, showBu
                 variant="outline"
                 size="lg"
                 className="text-white bg-red-800 border-red-700 hover:bg-red-700 hover:border-red-500 transition-colors font-semibold text-lg px-8 py-6"
-                onClick={() => window.location.href = 'tel:+79805279797'}
+                onClick={() => window.open(buttonUrl ?? 'tel:+79805279797', buttonUrl ? '_blank' : '_self')}
               >
                 {buttonText}
               </Button>

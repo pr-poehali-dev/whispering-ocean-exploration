@@ -41,6 +41,7 @@ export const sections = [
     content: 'Мы постоянно обновляем автопарк. Следите за новыми поступлениями или свяжитесь с нами — расскажем, что появится в ближайшее время.',
     showButton: true,
     buttonText: 'Узнать подробнее',
+    buttonUrl: 'https://vk.com/autojurist',
   },
   {
     id: 'conditions',
