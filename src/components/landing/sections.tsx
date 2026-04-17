@@ -13,7 +13,7 @@ export const sections = [
     id: 'fleet-1',
     title: 'ВАЗ Самара 2115',
     content: 'Надёжная классика. Подходит для города и загородных поездок.',
-    carImage: 'https://cdn.poehali.dev/projects/28778356-6d9e-479c-a3be-8d58b9202770/files/7cb9ebda-d97c-4850-a049-dec69c14ece4.jpg',
+    carImage: 'https://cdn.poehali.dev/projects/28778356-6d9e-479c-a3be-8d58b9202770/bucket/e0a28d5c-b624-4c34-a64a-34e0a323378d.jpg',
     carName: 'ВАЗ 2115 Самара',
     carPrice: '1 000 ₽/сутки',
     features: [
