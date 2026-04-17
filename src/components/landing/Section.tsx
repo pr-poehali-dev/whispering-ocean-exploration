@@ -1,8 +1,9 @@
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
+import Icon from "@/components/ui/icon"
 import type { SectionProps } from "@/types"
 
-export default function Section({ id, title, subtitle, content, isActive, showButton, buttonText }: SectionProps) {
+export default function Section({ id, title, subtitle, content, isActive, showButton, buttonText, carImage, carName, carPrice, features }: SectionProps) {
   return (
     <section id={id} className="relative h-screen w-full snap-start flex flex-col justify-center p-8 md:p-16 lg:p-24">
       {subtitle && (
@@ -15,40 +16,89 @@ export default function Section({ id, title, subtitle, content, isActive, showBu
           {subtitle}
         </motion.div>
       )}
-      <motion.h2
-        className="text-4xl md:text-6xl lg:text-[5rem] xl:text-[6rem] font-bold leading-[1.1] tracking-tight max-w-4xl text-white"
-        initial={{ opacity: 0, y: 50 }}
-        animate={isActive ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.5 }}
-      >
-        {title}
-      </motion.h2>
-      {content && (
-        <motion.p
-          className="text-lg md:text-xl lg:text-2xl max-w-2xl mt-6 text-neutral-400"
-          initial={{ opacity: 0, y: 50 }}
-          animate={isActive ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.2 }}
-        >
-          {content}
-        </motion.p>
-      )}
-      {showButton && (
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isActive ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          className="mt-12 md:mt-16"
-        >
-          <Button
-            variant="outline"
-            size="lg"
-            className="text-[#FF4D00] bg-transparent border-[#FF4D00] hover:bg-[#FF4D00] hover:text-black transition-colors"
+
+      <div className={`flex flex-col ${carImage ? 'lg:flex-row items-center gap-12' : ''}`}>
+        <div className="flex-1">
+          <motion.h2
+            className="text-4xl md:text-6xl lg:text-[5rem] xl:text-[6rem] font-bold leading-[1.1] tracking-tight max-w-4xl text-white"
+            initial={{ opacity: 0, y: 50 }}
+            animate={isActive ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5 }}
           >
-            {buttonText}
-          </Button>
-        </motion.div>
-      )}
+            {title}
+          </motion.h2>
+
+          {content && (
+            <motion.p
+              className="text-lg md:text-xl lg:text-2xl max-w-2xl mt-6 text-neutral-400"
+              initial={{ opacity: 0, y: 50 }}
+              animate={isActive ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
+              {content}
+            </motion.p>
+          )}
+
+          {features && (
+            <motion.ul
+              className="mt-6 space-y-3"
+              initial={{ opacity: 0, y: 30 }}
+              animate={isActive ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: 0.25 }}
+            >
+              {features.map((f, i) => (
+                <li key={i} className="flex items-center gap-3 text-neutral-300 text-lg">
+                  <Icon name="CheckCircle" size={20} className="text-red-600 shrink-0" />
+                  {f}
+                </li>
+              ))}
+            </motion.ul>
+          )}
+
+          {showButton && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={isActive ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="mt-12 md:mt-16"
+            >
+              <Button
+                variant="outline"
+                size="lg"
+                className="text-white bg-red-800 border-red-700 hover:bg-red-700 hover:border-red-500 transition-colors font-semibold text-lg px-8 py-6"
+              >
+                {buttonText}
+              </Button>
+            </motion.div>
+          )}
+        </div>
+
+        {carImage && (
+          <motion.div
+            className="flex-1 max-w-lg"
+            initial={{ opacity: 0, x: 60 }}
+            animate={isActive ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.7, delay: 0.2 }}
+          >
+            <div className="relative rounded-2xl overflow-hidden border border-red-900/50 shadow-2xl shadow-red-950/50">
+              <img
+                src={carImage}
+                alt={carName}
+                className="w-full h-64 lg:h-80 object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 p-4 flex items-end justify-between">
+                <span className="text-white font-bold text-xl">{carName}</span>
+                {carPrice && (
+                  <span className="bg-red-700 text-white font-bold px-4 py-1.5 rounded-full text-sm">
+                    {carPrice}
+                  </span>
+                )}
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </div>
     </section>
   )
 }
